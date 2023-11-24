@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <title>Ledger Table</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="container">
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary sticky-top bg-white z-index-5"
+        style="height: 70px"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Comp</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse d-flex"
+            style="justify-content: space-between"
+            id="navbarScroll"
+          >
+            <ul
+              class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+              style="--bs-scroll-height: 100px"
+            >
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Ledger</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Journel</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Balance Sheet</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Trial Sheet</a>
+              </li>
+            </ul>
+            <input
+              oninput="searchMe(event)"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              style="width: 350px"
+              id="inputField"
+            />
+          </div>
+        </div>
+      </nav>
+
+      <!--  -->
+
+      <div class="cotainer d-flex">
+        <div class="container sticky-top" style="width: 25%">
+          <h2 class="mb-4">Ledger Table</h2>
+          <form id="ledgerForm">
+            <div class="form-row">
+              <div class="col-md-10 mb-1">
+                <label for="description">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  required
+                />
+              </div>
+              <div class="col-md-10 mb-1">
+                <label for="amount">Amount</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="amount"
+                  required
+                />
+              </div>
+              <div class="col-md-10 mb-1">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" />
+              </div>
+              <div class="col-md-10 mb-4">
+                <label for="debitCreditDropdown">Type</label>
+                <select class="custom-select" id="debitCreditDropdown">
+                  <option selected>Credit</option>
+                  <option>Debit</option>
+                </select>
+              </div>
+              <div class="d-flex justify-content-around" style="width: 80%">
+                <button
+                  class="btn btn-secondary"
+                  style="
+                    width: 80px;
+                    padding: 10px;
+                    font-weight: bold;
+                    font-size: large;
+                  "
+                  onclick="clearme()"
+                >
+                  Clear
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="
+                    width: 80px;
+                    padding: 10px;
+                    font-weight: bold;
+                    font-size: large;
+                  "
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="container">
+          <div style="min-height: 480px">
+            <table class="table table-hover table-sm" id="ledger">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ledgerBody">
+                <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+          </div>
+          <div class="container d-flex justify-content-center">
+            <button
+              onclick="pageNumberMethod(event)"
+              id="p"
+              class="btn btn-primary mr-3"
+              style="width: 80px"
+            >
+              Prev
+            </button>
+            <button
+              id="n"
+              onclick="pageNumberMethod(event)"
+              class="btn btn-primary ml-3"
+              style="width: 80px"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Model -->
+    <div
+      class="modal fade"
+      id="exampleModalLong"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Alert</h5>
+          </div>
+          <div class="modal-body">
+            <p style="font-size: 18px">No more records</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../renderer.js"></script>
+    <script src="../javascript/pagination.js"></script>
+    <script src="../javascript/utilities.js"></script>
+    <script src="../javascript/ipcfunctions.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <script
+      src="https://kit.fontawesome.com/your-fontawesome-kit-id.js"
+      crossorigin="anonymous"
+    ></script> -->
+  </body>
+</html>

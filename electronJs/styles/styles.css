@@ -1,0 +1,9 @@
+.overflow-hidden {
+  overflow-x: hidden; /* Hide horizontal overflow */
+  max-width: 150px; /* Set max-width to limit width */
+}
+
+.more-btn {
+  cursor: pointer;
+  color: blue;
+}

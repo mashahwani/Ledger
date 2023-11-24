@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>IPC Example</title>
+  </head>
+  <body>
+    <h1>IPC Example</h1>
+    <p>Open the developer tools to see the IPC in action.</p>
+    <form id="addUserForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <button type="submit">Add User</button>
+    </form>
+    <h1>User Data</h1>
+    <ul id="userDataList"></ul>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

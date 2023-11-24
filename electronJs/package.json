@@ -1,0 +1,20 @@
+{
+  "name": "electronsqlite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^27.0.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "sqlite3": "^5.1.6"
+  }
+}
